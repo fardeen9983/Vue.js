@@ -15,29 +15,43 @@
         <p v-once>{{title}} - <a v-bind:href="link">Google</a></p>
         <p>{{sayHello()}}</p>
         <p>{{sayTitle()}}</p>
-        <hr>
+        <hr />
         <p>{{googleLink}}</p>
         <p v-html="googleLink"></p>
-        <hr>
+        <hr />
         <button v-on:click="increment(2,$event)">Click me</button>
         <p>{{counter}}</p>
-        <hr>
+        <hr />
         <p v-on:mousemove="updateCoordinates">
             Coordinates : {{x}}/ {{y}} - <span v-on:mousemove.stop>DEAD SPOT</span>
         </p>
-        <hr>
-        <input type="text" v-on:keyup.enter="alertMe">
+        <hr />
+        <input type="text" v-on:keyup.enter="alertMe" v-model="name" />
+        <p>{{name}}</p>
+        <hr />
+        <button v-on:click="count++">Increase</button>
+        <button v-on:click="count--">Decrease</button>
+        <button v-on:click="secondCount++">Increase Second</button>
+        <p>{{result()}} | {{countOutput}}</p>
     </div>
     <script>
         new Vue({
             el: "#app",
             data: {
                 title: "Hello World",
-                link: 'https://www.google.com',
+                link: "https://www.google.com",
                 googleLink: '<a href="https://www.google.com">Google Link</a>',
                 counter: 0,
                 x: 0,
-                y: 0
+                y: 0,
+                name: "MAX",
+                count: 0,
+                secondCount: 0
+            },
+            computed: {
+                countOutput: function() {
+                    return this.count > 5 ? 'Greater than 5' : 'Smaller than 5';
+                }
             },
             methods: {
                 changeTitle: function(event) {
@@ -57,7 +71,10 @@
                     this.y = event.clientY;
                 },
                 alertMe: () => {
-                    alert("Alert")
+                    alert("Alert");
+                },
+                result: function() {
+                    return this.count > 5 ? 'Greater than 5' : 'Smaller than 5';
                 }
             }
         });
