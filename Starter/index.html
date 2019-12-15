@@ -19,8 +19,12 @@
         <p>{{googleLink}}</p>
         <p v-html="googleLink"></p>
         <hr>
-        <button v-on:click="increment(2)">Click me</button>
+        <button v-on:click="increment(2,$event)">Click me</button>
         <p>{{counter}}</p>
+        <hr>
+        <p v-on:mousemove="updateCoordinates">
+            Coordinates : {{x}}/ {{y}} - <span v-on:mousemove.stop>DEAD SPOT</span>
+        </p>
     </div>
     <script>
         new Vue({
@@ -29,7 +33,9 @@
                 title: "Hello World",
                 link: 'https://www.google.com',
                 googleLink: '<a href="https://www.google.com">Google Link</a>',
-                counter: 0
+                counter: 0,
+                x: 0,
+                y: 0
             },
             methods: {
                 changeTitle: function(event) {
@@ -43,6 +49,10 @@
                 },
                 increment: function(i) {
                     this.counter += i;
+                },
+                updateCoordinates: function(event) {
+                    this.x = event.clientX;
+                    this.y = event.clientY;
                 }
             }
         });
