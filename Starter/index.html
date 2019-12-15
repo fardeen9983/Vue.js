@@ -18,6 +18,9 @@
         <hr>
         <p>{{googleLink}}</p>
         <p v-html="googleLink"></p>
+        <hr>
+        <button v-on:click="counterPlus">Click me</button>
+        <p>{{counter}}</p>
     </div>
     <script>
         new Vue({
@@ -25,7 +28,8 @@
             data: {
                 title: "Hello World",
                 link: 'https://www.google.com',
-                googleLink: '<a href="https://www.google.com">Google Link</a>'
+                googleLink: '<a href="https://www.google.com">Google Link</a>',
+                counter: 0
             },
             methods: {
                 changeTitle: function(event) {
@@ -36,6 +40,9 @@
                 },
                 sayTitle: function() {
                     return this.title;
+                },
+                counterPlus: function() {
+                    this.counter++;
                 }
             }
         });
