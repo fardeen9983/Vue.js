@@ -15,6 +15,10 @@
         <p v-else>You can also see me</p>
         <p>Do you see me?</p>
         <button @click="show =!show">Click me</button>
+        <template v-if="show">
+			<h1>Heading</h1>
+			<p>Inside a template</p>
+		</template>
 
     </div>
     <script>
